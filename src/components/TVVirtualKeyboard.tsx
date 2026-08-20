@@ -17,14 +17,19 @@ const KEYBOARD_ROWS = [
 ];
 
 const SEARCH_SUGGESTIONS = [
+  "LG Smart TV Download",
+  "Samsung TV Tizen Setup",
+  "Google TV & Sony/TCL",
+  "Windows PC / Laptop",
+  "Apple MacBook Smarters",
+  "Amazon Firestick 4K",
+  "Roku TV Setup Guide",
+  "How to Download IPTV Smarters",
+  "Tiger OTT Subscription",
   "Stranger Things",
   "Avengers",
   "Breaking Bad",
   "Dune",
-  "The Batman",
-  "Spider-Man",
-  "John Wick",
-  "Interstellar",
 ];
 
 export const TVVirtualKeyboard: React.FC<TVVirtualKeyboardProps> = ({

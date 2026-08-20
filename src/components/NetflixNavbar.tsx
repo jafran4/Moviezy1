@@ -26,6 +26,7 @@ import { ActiveNavTab, UserProfile, NotificationItem, MediaItem } from "../types
 import { PROFILES, NOTIFICATIONS } from "../data/fallbackData";
 import { TigerLogo } from "./TigerLogo";
 import { OFFICIAL_FACEBOOK_PAGE } from "./TigerSubscriptionSection";
+import { searchDeviceGuides, DEVICE_GUIDES } from "../data/deviceGuidesData";
 
 interface NetflixNavbarProps {
   activeTab: ActiveNavTab;
@@ -380,43 +381,116 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
             <span>Store</span>
           </button>
 
-          {/* Search Bar Toggle */}
-          <div
-            className={`flex items-center border transition-all duration-300 rounded-md ${
-              searchOpen || searchQuery
-                ? "w-36 sm:w-64 md:w-72 bg-neutral-100 border-neutral-300 px-2 py-1"
-                : "w-8 bg-transparent border-transparent p-1"
-            }`}
-          >
-            <button
-              data-tv-focusable="true"
-              onClick={toggleSearch}
-              className="text-neutral-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-amber-500 rounded p-0.5 cursor-pointer"
-              aria-label="Search movies & TV shows"
+          {/* Search Bar Toggle & Smart Dropdown */}
+          <div className="relative">
+            <div
+              className={`flex items-center border transition-all duration-300 rounded-md ${
+                searchOpen || searchQuery
+                  ? "w-36 sm:w-64 md:w-72 bg-neutral-100 border-neutral-300 px-2 py-1"
+                  : "w-8 bg-transparent border-transparent p-1"
+              }`}
             >
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
+              <button
+                data-tv-focusable="true"
+                onClick={toggleSearch}
+                className="text-neutral-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-amber-500 rounded p-0.5 cursor-pointer"
+                aria-label="Search movies & TV shows"
+              >
+                <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
 
-            {(searchOpen || searchQuery) && (
-              <>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => onSearchChange(e.target.value)}
-                  placeholder="Search..."
-                  className="w-full bg-transparent text-neutral-900 text-xs sm:text-sm px-1.5 sm:px-2 focus:outline-none placeholder:text-neutral-500 font-normal min-w-0"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={onClearSearch}
-                    className="text-neutral-500 hover:text-black p-0.5 flex-shrink-0"
-                    aria-label="Clear search query"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
+              {(searchOpen || searchQuery) && (
+                <>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => onSearchChange(e.target.value)}
+                    placeholder="Search LG, Samsung, Google TV, movies..."
+                    className="w-full bg-transparent text-neutral-900 text-xs sm:text-sm px-1.5 sm:px-2 focus:outline-none placeholder:text-neutral-500 font-normal min-w-0"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={onClearSearch}
+                      className="text-neutral-500 hover:text-black p-0.5 flex-shrink-0"
+                      aria-label="Clear search query"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Smart Search Instant Match Dropdown */}
+            {(searchOpen && (searchQuery.trim().length > 0)) && (
+              <div className="absolute right-0 top-11 w-72 sm:w-96 bg-white border border-neutral-200 rounded-2xl shadow-2xl p-3 z-50 animate-fadeIn divide-y divide-neutral-100 max-h-96 overflow-y-auto">
+                <div className="flex items-center justify-between pb-2 px-1 text-xs text-neutral-500">
+                  <span className="font-extrabold text-neutral-900 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                    <span>Search Results &amp; Guides</span>
+                  </span>
+                  <span className="text-[11px] text-amber-600 font-bold">Press Enter</span>
+                </div>
+
+                {/* Matched Device Guides */}
+                {searchDeviceGuides(searchQuery).length > 0 && (
+                  <div className="py-2 space-y-1.5">
+                    <span className="text-[10px] font-black uppercase text-amber-600 px-1 tracking-wider">
+                      Official Device Download Guides
+                    </span>
+                    {searchDeviceGuides(searchQuery).slice(0, 3).map((guide) => (
+                      <button
+                        key={guide.id}
+                        type="button"
+                        onClick={() => {
+                          onSearchChange(guide.brand);
+                          setSearchOpen(false);
+                          setTimeout(() => {
+                            const el = document.getElementById("search-device-guide-results") || document.getElementById("how-to-download-iptv-smarters-pro-on-tv");
+                            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }, 150);
+                        }}
+                        className="w-full text-left p-2 rounded-xl hover:bg-amber-50 transition flex items-center space-x-2.5 group cursor-pointer"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-neutral-900 text-amber-400 flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                          <Tv className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-neutral-900 group-hover:text-amber-700 truncate">
+                            {guide.name}
+                          </p>
+                          <p className="text-[11px] text-neutral-500 truncate">
+                            Store: {guide.appStore} • {guide.os}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </>
+
+                {/* Quick Suggestion Chips */}
+                <div className="pt-2">
+                  <span className="text-[10px] font-black uppercase text-neutral-400 px-1 tracking-wider">
+                    Quick TV Searches
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    {["LG TV", "Samsung TV", "Google TV", "Firestick", "PC / Laptop", "Apple Mac"].map((tag) => (
+                      <button
+                        key={tag}
+                        type="button"
+                        onClick={() => {
+                          onSearchChange(tag);
+                          setSearchOpen(false);
+                        }}
+                        className="text-[11px] font-bold px-2 py-1 rounded-md bg-neutral-100 hover:bg-amber-100 hover:text-amber-800 text-neutral-700 transition cursor-pointer"
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 

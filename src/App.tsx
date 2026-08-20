@@ -11,6 +11,7 @@ import TigerSubscriptionSection from "./components/TigerSubscriptionSection";
 import { TigerSEOSection } from "./components/TigerSEOSection";
 import { TigerIPTVBlogSection } from "./components/TigerIPTVBlogSection";
 import { IPTVSmartersDownloadGuide } from "./components/IPTVSmartersDownloadGuide";
+import { DeviceSearchGuideResults } from "./components/DeviceSearchGuideResults";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
 import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService } from "./types";
@@ -338,7 +339,7 @@ const App: React.FC = () => {
             </h2>
 
             {/* TV On-Screen Virtual Keyboard for Remote Control Typing */}
-            <div className="mb-8">
+            <div className="mb-6">
               <TVVirtualKeyboard
                 value={searchQuery}
                 onChange={setSearchQuery}
@@ -347,9 +348,51 @@ const App: React.FC = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between mb-4">
+            {/* Quick Device & Setup Search Tags */}
+            <div className="mb-8 flex items-center flex-wrap gap-2">
+              <span className="text-xs font-black uppercase text-neutral-400 mr-1 flex items-center gap-1">
+                <Tv className="w-3.5 h-3.5 text-amber-500" />
+                <span>Search by Device:</span>
+              </span>
+              {[
+                { label: "LG TV (webOS)", q: "lg" },
+                { label: "Samsung TV (Tizen)", q: "samsung" },
+                { label: "Google TV / Sony / TCL", q: "google tv" },
+                { label: "Amazon Firestick 4K", q: "firestick" },
+                { label: "Windows PC / Laptop", q: "laptop" },
+                { label: "Apple Mac App Store", q: "mac" },
+                { label: "Roku TV Setup", q: "roku" },
+                { label: "Tiger OTT Plans", q: "iptv" },
+              ].map((chip) => (
+                <button
+                  key={chip.label}
+                  type="button"
+                  onClick={() => setSearchQuery(chip.q)}
+                  className={`text-xs font-bold px-3 py-1.5 rounded-full transition cursor-pointer ${
+                    searchQuery.toLowerCase().includes(chip.q)
+                      ? "bg-amber-500 text-black shadow-sm"
+                      : "bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300"
+                  }`}
+                >
+                  {chip.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Matching Device Setup Guides & IPTV Smarters Downloads (LG, Samsung, Google TV, PC, Mac, Firestick, etc.) */}
+            {searchQuery.trim() && (
+              <DeviceSearchGuideResults
+                searchQuery={searchQuery}
+                onOpenStore={() => handleSelectTab("ott_store")}
+                onOpenBlogArticle={() => handleSelectTab("blog")}
+              />
+            )}
+
+            <div className="flex items-center justify-between mb-4 pt-4 border-t border-neutral-200">
               <p className="text-xs sm:text-sm text-neutral-600 font-semibold">
-                Found {searchResults.length} titles
+                {searchResults.length > 0
+                  ? `Found ${searchResults.length} movies & TV titles matching "${searchQuery}"`
+                  : `Movie & TV Titles`}
               </p>
             </div>
 
@@ -376,13 +419,35 @@ const App: React.FC = () => {
                 ))}
               </div>
             ) : searchQuery.trim() ? (
-              <div className="text-center py-16 text-neutral-600 bg-neutral-50 rounded-2xl border border-neutral-200 p-8 shadow-xs">
-                <p className="text-lg font-bold text-neutral-900 mb-2">
-                  No matches found for "{searchQuery}"
+              <div className="text-center py-12 text-neutral-600 bg-neutral-50 rounded-2xl border border-neutral-200 p-8 shadow-xs">
+                <p className="text-base sm:text-lg font-bold text-neutral-900 mb-2">
+                  Device Setup Guides &amp; IPTV Instructions Loaded Above
                 </p>
-                <p className="text-sm text-neutral-600">
-                  Try searching for popular titles like <em>Stranger Things</em>, <em>Avengers</em>, or <em>Dune</em>.
+                <p className="text-xs sm:text-sm text-neutral-600 max-w-xl mx-auto mb-6">
+                  Check out the step-by-step download guide and video tutorial matched above for <strong>"{searchQuery}"</strong>, or message us on Facebook for instant 1-on-1 assistance!
                 </p>
+                <div className="flex items-center justify-center gap-3 flex-wrap">
+                  <button
+                    data-tv-focusable="true"
+                    onClick={() => {
+                      const el = document.getElementById("how-to-download-iptv-smarters-pro-on-tv");
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className="px-5 py-2.5 bg-neutral-900 hover:bg-black text-white font-bold rounded-xl text-xs transition cursor-pointer"
+                  >
+                    View Complete TV Installation Page
+                  </button>
+                  <button
+                    data-tv-focusable="true"
+                    onClick={() => {
+                      setSearchQuery("");
+                      handleSelectTab("home");
+                    }}
+                    className="px-5 py-2.5 bg-[#E50914] hover:bg-[#b80710] text-white font-bold rounded-xl text-xs transition cursor-pointer"
+                  >
+                    Browse Trending Movies &amp; Shows
+                  </button>
+                </div>
               </div>
             ) : null}
           </section>
