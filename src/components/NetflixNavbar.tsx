@@ -19,7 +19,8 @@ import {
   Home,
   Flame,
   Facebook,
-  ExternalLink
+  ExternalLink,
+  BookOpen
 } from "lucide-react";
 import { ActiveNavTab, UserProfile, NotificationItem, MediaItem } from "../types";
 import { PROFILES, NOTIFICATIONS } from "../data/fallbackData";
@@ -266,6 +267,29 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                   {myListCount}
                 </span>
               )}
+            </button>
+
+            {/* Blog & Guides Link */}
+            <button
+              data-tv-focusable="true"
+              onClick={() => {
+                onSelectTab("blog");
+                if (searchQuery) onClearSearch();
+                setTimeout(() => {
+                  const el = document.getElementById("tiger-iptv-blog");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }, 60);
+              }}
+              className={`transition duration-300 px-2 py-1 rounded flex items-center space-x-1.5 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
+                activeTab === "blog"
+                  ? "text-black font-black"
+                  : "text-neutral-600 hover:text-black"
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5 text-amber-500" />
+              <span>IPTV Blog &amp; FAQ</span>
             </button>
 
             {/* OTT Store Pill */}
@@ -519,6 +543,24 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                       {myListCount}
                     </span>
                   )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("blog")}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "blog"
+                      ? "bg-amber-50 text-amber-900 font-black"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <BookOpen className="w-4 h-4 text-amber-600" />
+                    <span>IPTV Blog &amp; FAQ</span>
+                  </div>
+                  <span className="text-[10px] font-bold bg-neutral-100 text-neutral-600 px-1.5 py-0.5 rounded">
+                    Guides
+                  </span>
                 </button>
 
                 <button

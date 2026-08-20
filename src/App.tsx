@@ -9,6 +9,7 @@ import { TVVirtualKeyboard } from "./components/TVVirtualKeyboard";
 import { TVRemoteHelpModal } from "./components/TVRemoteHelpModal";
 import TigerSubscriptionSection from "./components/TigerSubscriptionSection";
 import { TigerSEOSection } from "./components/TigerSEOSection";
+import { TigerIPTVBlogSection } from "./components/TigerIPTVBlogSection";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
 import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService } from "./types";
@@ -422,6 +423,14 @@ const App: React.FC = () => {
               </div>
             )}
           </section>
+        ) : activeTab === "blog" ? (
+          /* Dedicated Blog & SEO Guides Tab View */
+          <section className="animate-fadeIn min-h-[80vh]">
+            <TigerIPTVBlogSection
+              isDedicatedView={true}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
         ) : (
           /* Netflix Default Home / TV Series / Movies / New Feed */
           <>
@@ -646,6 +655,9 @@ const App: React.FC = () => {
         />
       )}
 
+      {/* IPTV Service & Best IPTV Blog Knowledge Hub */}
+      <TigerIPTVBlogSection onOpenStore={() => handleSelectTab("ott_store")} />
+
       {/* SEO & IPTV Service Provider FAQ Section */}
       <TigerSEOSection onOpenStore={() => handleSelectTab("ott_store")} />
 
@@ -687,23 +699,92 @@ const App: React.FC = () => {
             </button>
           </div>
 
+          {/* SEO Targeted Keyword Anchors Matrix */}
+          <div className="p-4 bg-white rounded-xl border border-neutral-200 text-xs text-neutral-600 space-y-2">
+            <div className="font-bold text-neutral-900 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Popular Search Queries &amp; IPTV Service Directories:</span>
+            </div>
+            <div className="flex flex-wrap gap-2 text-[11px]">
+              <button
+                onClick={() => {
+                  setActiveTab("blog");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                Best IPTV Service 2026- 2027
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  setActiveTab("blog");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                Best IPTV Service Reddit
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("faq-best-iptv-service");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                What is Best IPTV Service?
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("faq-best-iptv-service");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                What is the Best IPTV Service?
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  setActiveTab("blog");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                IPTV Streaming Services
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("tiger-ott-subscription");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                Top IPTV Service Providers ($1.65/mo)
+              </button>
+            </div>
+          </div>
+
           {/* 4-column link grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-neutral-500">
             <div className="space-y-2">
-              <a href="#audio" className="block hover:text-neutral-900 hover:underline">Audio Description</a>
+              <a href="#tiger-iptv-blog" className="block hover:text-neutral-900 hover:underline">IPTV Blog &amp; Insights</a>
               <a href="#investors" className="block hover:text-neutral-900 hover:underline">Investor Relations</a>
               <a href="#privacy" className="block hover:text-neutral-900 hover:underline">Privacy Policy</a>
-              <a href="#contact" className="block hover:text-neutral-900 hover:underline">Contact Us (24/7)</a>
+              <a href="https://www.facebook.com/profile.php?id=61565847062555" target="_blank" rel="noopener noreferrer" className="block text-[#1877F2] font-semibold hover:underline">Contact Us on Facebook (24/7)</a>
             </div>
             <div className="space-y-2">
-              <a href="#help" className="block hover:text-neutral-900 hover:underline">Help Center &amp; FAQ</a>
-              <a href="#jobs" className="block hover:text-neutral-900 hover:underline">Jobs &amp; Resellers</a>
+              <a href="#faq-best-iptv-service" className="block hover:text-neutral-900 hover:underline">Best IPTV Service FAQ</a>
+              <a href="#jobs" className="block hover:text-neutral-900 hover:underline">Resellers &amp; Panel Credits</a>
               <a href="#legal" className="block hover:text-neutral-900 hover:underline">Legal Notices</a>
               <a href="#dna" className="block hover:text-neutral-900 hover:underline">Do Not Sell My Info</a>
             </div>
             <div className="space-y-2">
               <a href="#gift" className="block hover:text-neutral-900 hover:underline">Gift Cards</a>
-              <a href="#netflixshop" className="block hover:text-neutral-900 hover:underline">OTT Store</a>
+              <a href="#tiger-ott-subscription" className="block hover:text-neutral-900 hover:underline">Cheap IPTV Subscription</a>
               <a href="#cookie" className="block hover:text-neutral-900 hover:underline">Cookie Preferences</a>
               <a href="#adchoices" className="block hover:text-neutral-900 hover:underline">Ad Choices</a>
             </div>
@@ -711,7 +792,7 @@ const App: React.FC = () => {
               <a href="#media" className="block hover:text-neutral-900 hover:underline">Media Center</a>
               <a href="#terms" className="block hover:text-neutral-900 hover:underline">Terms of Service</a>
               <a href="#corporate" className="block hover:text-neutral-900 hover:underline">Corporate Information</a>
-              <a href="#guarantee" className="block hover:text-neutral-900 hover:underline">100% Uptime Guarantee</a>
+              <a href="#guarantee" className="block hover:text-neutral-900 hover:underline">100% Anti-Freeze Guarantee</a>
             </div>
           </div>
 

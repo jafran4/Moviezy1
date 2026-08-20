@@ -75,7 +75,8 @@ export type ActiveNavTab =
   | 'mylist'
   | 'ott_store'
   | 'reseller'
-  | 'languages';
+  | 'languages'
+  | 'blog';
 
 export interface OTTPlan {
   id: string;
