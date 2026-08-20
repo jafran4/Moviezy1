@@ -417,11 +417,12 @@ export const TigerIPTVBlogSection: React.FC<TigerIPTVBlogSectionProps> = ({
                   {sec.subheadings && (
                     <div className="space-y-4 pl-3 sm:pl-4 border-l border-neutral-800 mt-3">
                       {sec.subheadings.map((sub, sIdx) => (
-                        <div key={sIdx} className="space-y-1.5">
-                          <h3 className="font-bold text-amber-300 text-sm sm:text-base">
+                        <div key={sIdx} className="space-y-1.5 bg-neutral-950/60 p-3.5 rounded-xl border border-neutral-800/80">
+                          <h3 className="font-bold text-amber-300 text-sm sm:text-base flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-amber-400" />
                             {sub.title}
                           </h3>
-                          <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+                          <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
                             {sub.body}
                           </p>
                         </div>
@@ -430,6 +431,50 @@ export const TigerIPTVBlogSection: React.FC<TigerIPTVBlogSectionProps> = ({
                   )}
                 </div>
               ))}
+
+              {/* Special Video & Facebook Section for IPTV Smarters Post */}
+              {activePost.slug === "how-to-download-iptv-smarters-pro-on-tv" && (
+                <div className="space-y-6 pt-4 border-t border-neutral-800">
+                  <div className="space-y-3">
+                    <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                      <Tv className="w-4 h-4 text-red-500" />
+                      <span>Video Tutorial: Installing IPTV Smarters Pro on Smart TV &amp; Firestick</span>
+                    </h3>
+                    <p className="text-xs text-neutral-400">
+                      Watch this detailed video tutorial explaining how to safely install and configure IPTV Smarters Pro on various smart TV models and streaming sticks:
+                    </p>
+                    <div className="relative pb-[56.25%] h-0 w-full rounded-xl overflow-hidden border border-neutral-800 shadow-xl bg-black">
+                      <iframe
+                        src="https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
+                        title="How to download IPTV Smarters Pro on TV video tutorial"
+                        className="absolute top-0 left-0 w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-gradient-to-r from-blue-900/40 to-neutral-950 border border-blue-500/40 rounded-xl space-y-2">
+                    <div className="flex items-center space-x-2 text-blue-300 font-bold text-xs sm:text-sm">
+                      <Facebook className="w-4 h-4 text-[#1877F2]" />
+                      <span>Direct 1-on-1 Device Tailored Help</span>
+                    </div>
+                    <p className="text-xs text-neutral-300 leading-relaxed">
+                      If you can tell us on Facebook the exact brand and model of your TV and laptop, We can give you step-by-step instructions tailored precisely to your operating system.
+                    </p>
+                    <a
+                      href={OFFICIAL_FACEBOOK_PAGE}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold rounded-lg text-xs transition mt-2 shadow-md"
+                    >
+                      <Facebook className="w-3.5 h-3.5" />
+                      <span>Chat on Facebook for Setup</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              )}
 
               {/* Facebook Order Banner inside Modal */}
               <div className="mt-8 p-5 bg-gradient-to-br from-amber-500/10 via-neutral-950 to-neutral-900 border border-amber-500/30 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">

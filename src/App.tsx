@@ -10,6 +10,7 @@ import { TVRemoteHelpModal } from "./components/TVRemoteHelpModal";
 import TigerSubscriptionSection from "./components/TigerSubscriptionSection";
 import { TigerSEOSection } from "./components/TigerSEOSection";
 import { TigerIPTVBlogSection } from "./components/TigerIPTVBlogSection";
+import { IPTVSmartersDownloadGuide } from "./components/IPTVSmartersDownloadGuide";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
 import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService } from "./types";
@@ -658,6 +659,9 @@ const App: React.FC = () => {
       {/* IPTV Service & Best IPTV Blog Knowledge Hub */}
       <TigerIPTVBlogSection onOpenStore={() => handleSelectTab("ott_store")} />
 
+      {/* How to Download IPTV Smarters Pro on TV & Laptop Guide */}
+      <IPTVSmartersDownloadGuide onOpenStore={() => handleSelectTab("ott_store")} />
+
       {/* SEO & IPTV Service Provider FAQ Section */}
       <TigerSEOSection onOpenStore={() => handleSelectTab("ott_store")} />
 
@@ -754,6 +758,16 @@ const App: React.FC = () => {
                 className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
               >
                 IPTV Streaming Services
+              </button>
+              <span className="text-neutral-300">•</span>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("how-to-download-iptv-smarters-pro-on-tv");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hover:text-amber-600 font-semibold cursor-pointer underline decoration-neutral-300"
+              >
+                How to Download IPTV Smarters Pro on TV
               </button>
               <span className="text-neutral-300">•</span>
               <button
