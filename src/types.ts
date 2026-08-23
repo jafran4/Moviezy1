@@ -52,6 +52,27 @@ export interface UserProfile {
   isKids: boolean;
 }
 
+export interface AuthUser {
+  id: string;
+  name: string;
+  username?: string;
+  email: string;
+  avatar: string;
+  isSubscriber: boolean;
+  subscriptionPlan?: string;
+  subscriptionDetails?: string;
+  expiryDate?: string;
+  iptvUsername?: string;
+  iptvPassword?: string;
+  iptvServer?: string;
+  connectionsCount?: number;
+  maxDevices?: number;
+  packageType?: string;
+  totalDuration?: string;
+  isAdultPack?: boolean;
+  role?: 'user' | 'subscriber' | 'admin';
+}
+
 export interface NotificationItem {
   id: string;
   title: string;

@@ -12,9 +12,10 @@ import { TigerSEOSection } from "./components/TigerSEOSection";
 import { TigerIPTVBlogSection } from "./components/TigerIPTVBlogSection";
 import { IPTVSmartersDownloadGuide } from "./components/IPTVSmartersDownloadGuide";
 import { DeviceSearchGuideResults } from "./components/DeviceSearchGuideResults";
+import { UserLoginModal } from "./components/UserLoginModal";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
-import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService } from "./types";
+import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService, AuthUser } from "./types";
 import {
   fetchCategoryMedia,
   searchTMDb,
@@ -37,6 +38,15 @@ const App: React.FC = () => {
   // Navigation & User State
   const [activeTab, setActiveTab] = useState<ActiveNavTab>("home");
   const [currentProfile, setCurrentProfile] = useState<UserProfile>(PROFILES[0]);
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => {
+    try {
+      const saved = localStorage.getItem("tiger_ott_auth_user");
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<MediaItem[]>([]);
   const [searchLoading, setSearchLoading] = useState<boolean>(false);
@@ -142,6 +152,19 @@ const App: React.FC = () => {
       console.warn("Failed to persist watchlist", e);
     }
   }, [myList]);
+
+  // Save authenticated user to localStorage
+  useEffect(() => {
+    try {
+      if (currentUser) {
+        localStorage.setItem("tiger_ott_auth_user", JSON.stringify(currentUser));
+      } else {
+        localStorage.removeItem("tiger_ott_auth_user");
+      }
+    } catch (e) {
+      console.warn("Failed to persist auth user", e);
+    }
+  }, [currentUser]);
 
   // Handle Search Input (Debounced)
   useEffect(() => {
@@ -314,6 +337,16 @@ const App: React.FC = () => {
         currentProfile={currentProfile}
         onSelectProfile={setCurrentProfile}
         myListCount={myList.length}
+        currentUser={currentUser}
+        onOpenLoginModal={() => setShowLoginModal(true)}
+        onLogout={() => {
+          setCurrentUser(null);
+          try {
+            localStorage.removeItem("tiger_ott_auth_user");
+          } catch (e) {
+            console.warn(e);
+          }
+        }}
         onOpenDetailModal={handleOpenDetailModal}
         onOpenTVHelp={() => setShowTVHelp(true)}
         isTVMode={isTVMode}
@@ -708,6 +741,35 @@ const App: React.FC = () => {
           onClose={() => {
             setCheckoutPlan(null);
             setCheckoutService(null);
+          }}
+        />
+      )}
+
+      {/* User Login & Account Management Modal */}
+      {showLoginModal && (
+        <UserLoginModal
+          isOpen={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+          currentUser={currentUser}
+          onLogin={(user) => {
+            setCurrentUser(user);
+            setShowLoginModal(false);
+          }}
+          onLogout={() => {
+            setCurrentUser(null);
+            setShowLoginModal(false);
+            try {
+              localStorage.removeItem("tiger_ott_auth_user");
+            } catch (e) {
+              console.warn(e);
+            }
+          }}
+          onSelectProfile={(p) => {
+            setCurrentProfile(p);
+          }}
+          onOpenPlans={() => {
+            setShowLoginModal(false);
+            handleSelectTab("ott_store");
           }}
         />
       )}
