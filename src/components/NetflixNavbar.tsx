@@ -293,21 +293,6 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
               <span>IPTV Blog &amp; FAQ</span>
             </button>
 
-            {/* Smarters Pro Download Guide Button */}
-            <button
-              data-tv-focusable="true"
-              onClick={() => {
-                const el = document.getElementById("how-to-download-iptv-smarters-pro-on-tv");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-              className="transition duration-300 px-2 py-1 rounded flex items-center space-x-1 text-neutral-600 hover:text-black focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer"
-            >
-              <Tv className="w-3.5 h-3.5 text-blue-600" />
-              <span>Download on TV</span>
-            </button>
-
             {/* OTT Store Pill */}
             <button
               id="nav-ott-store-btn"
@@ -348,20 +333,8 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
           </nav>
         </div>
 
-        {/* Right Section: TV Remote Guide Button, Search, Notifications */}
+        {/* Right Section: Quick Store Trigger, Search, Notifications */}
         <div className="flex items-center space-x-1.5 sm:space-x-3">
-          {/* TV Remote Helper Button */}
-          {onOpenTVHelp && (
-            <button
-              data-tv-focusable="true"
-              onClick={onOpenTVHelp}
-              className="hidden sm:flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300 text-xs font-bold transition focus:ring-4 focus:ring-amber-500 outline-none cursor-pointer"
-              title="TV Remote Navigation & Shortcuts"
-            >
-              <Tv className="w-4 h-4 text-amber-600" />
-              <span>TV Remote</span>
-            </button>
-          )}
 
           {/* Mobile Quick Store Trigger */}
           <button
@@ -649,26 +622,6 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                   </div>
                   <span className="text-[10px] font-bold bg-neutral-100 text-neutral-600 px-1.5 py-0.5 rounded">
                     Guides
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    setTimeout(() => {
-                      const el = document.getElementById("how-to-download-iptv-smarters-pro-on-tv");
-                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }, 100);
-                  }}
-                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-bold text-neutral-700 hover:bg-neutral-100 transition text-left"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Tv className="w-4 h-4 text-blue-600" />
-                    <span>Download on TV &amp; PC</span>
-                  </div>
-                  <span className="text-[10px] font-bold bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">
-                    Tutorial
                   </span>
                 </button>
 

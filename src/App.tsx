@@ -758,14 +758,6 @@ const App: React.FC = () => {
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
-
-            <button
-              onClick={() => setShowTVHelp(true)}
-              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-neutral-800 text-xs font-bold border border-neutral-200 shadow-2xs transition cursor-pointer"
-            >
-              <Tv className="w-4 h-4 text-amber-500" />
-              <span>Smart TV Controls Guide</span>
-            </button>
           </div>
 
           {/* SEO Targeted Keyword Anchors Matrix */}
