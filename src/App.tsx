@@ -15,6 +15,7 @@ import { DeviceSearchGuideResults } from "./components/DeviceSearchGuideResults"
 import { UserLoginModal } from "./components/UserLoginModal";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
+import { TigerNewHomePage } from "./components/TigerNewHomePage";
 import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService, AuthUser } from "./types";
 import {
   fetchCategoryMedia,
@@ -531,175 +532,26 @@ const App: React.FC = () => {
             />
           </section>
         ) : (
-          /* Netflix Default Home / TV Series / Movies / New Feed */
-          <>
-            {/* Cinematic Billboard Hero */}
-            <NetflixHero
-              media={
-                activeTab === "tv" && tvShows.length > 0
-                  ? tvShows[0]
-                  : activeTab === "movies" && popular.length > 0
-                  ? popular[0]
-                  : heroMedia
-              }
-              onPlay={handlePlayMedia}
-              onOpenDetail={handleOpenDetailModal}
-              isInMyList={heroMedia ? myListIds.has(heroMedia.id) : false}
-              onToggleMyList={handleToggleMyList}
-              onOpenStore={() => handleSelectTab("ott_store")}
-            />
-
-            {/* World's #1 OTT Service - Subscription Section */}
-            <TigerSubscriptionSection
-              onSelectPlan={(plan, service) => {
-                setCheckoutPlan(plan);
-                setCheckoutService(service);
-              }}
-            />
-
-            {/* Content Rows with Remote-Friendly Horizontal Navigation */}
-            <div className="relative z-20 space-y-4 sm:space-y-6 md:space-y-8">
-              {/* Continue Watching Row */}
-              {continueWatching.length > 0 && (
-                <NetflixRow
-                  rowId="row-continue"
-                  title="Continue Watching for Alex"
-                  items={continueWatching}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 🌟 Trending Now */}
-              <NetflixRow
-                rowId="row-trending"
-                title="Trending Now"
-                items={trending}
-                onPlay={handlePlayMedia}
-                onOpenDetail={handleOpenDetailModal}
-                myListIds={myListIds}
-                onToggleMyList={handleToggleMyList}
-              />
-
-              {/* 🔟 Top 10 Row (with Giant Metallic Numbers) */}
-              {top10.length > 0 && (
-                <NetflixRow
-                  rowId="row-top10"
-                  title="Top 10 in the U.S. Today"
-                  items={top10}
-                  isTop10={true}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 🍿 Popular on Tiger OTT */}
-              <NetflixRow
-                rowId="row-popular"
-                title="Popular Movies & Series"
-                items={popular}
-                onPlay={handlePlayMedia}
-                onOpenDetail={handleOpenDetailModal}
-                myListIds={myListIds}
-                onToggleMyList={handleToggleMyList}
-              />
-
-              {/* 📺 Binge-Worthy TV Series */}
-              {tvShows.length > 0 && (
-                <NetflixRow
-                  rowId="row-tv"
-                  title="Binge-Worthy TV Series & Dramas"
-                  items={tvShows}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 💥 Action & Adrenaline */}
-              {filteredAction.length > 0 && (
-                <NetflixRow
-                  rowId="row-action"
-                  title="Adrenaline-Fueled Action Blockbusters"
-                  items={filteredAction}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 🚀 Sci-Fi & Cyberpunk */}
-              {scifiHits.length > 0 && (
-                <NetflixRow
-                  rowId="row-scifi"
-                  title="Sci-Fi & Cyberpunk Hits"
-                  items={scifiHits}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 🏆 Critically Acclaimed Masterpieces */}
-              {topRated.length > 0 && (
-                <NetflixRow
-                  rowId="row-top-rated"
-                  title="Critically Acclaimed Masterpieces"
-                  items={topRated}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 🥳 Coming Soon */}
-              {upcoming.length > 0 && (
-                <NetflixRow
-                  rowId="row-upcoming"
-                  title="Coming Soon & Worth the Wait"
-                  items={upcoming}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 😂 Feel-Good Comedies */}
-              {comedies.length > 0 && (
-                <NetflixRow
-                  rowId="row-comedy"
-                  title="Feel-Good Comedies"
-                  items={comedies}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-
-              {/* 👻 Late Night Horror */}
-              {horrors.length > 0 && (
-                <NetflixRow
-                  rowId="row-horror"
-                  title="Late Night Horror & Suspense"
-                  items={horrors}
-                  onPlay={handlePlayMedia}
-                  onOpenDetail={handleOpenDetailModal}
-                  myListIds={myListIds}
-                  onToggleMyList={handleToggleMyList}
-                />
-              )}
-            </div>
-          </>
+          /* Brand New Unified Home Page with Netflix, Amazon Prime, Live TV, UCL, Premier League & Spanish League */
+          <TigerNewHomePage
+            trending={trending}
+            top10={top10}
+            popular={popular}
+            tvShows={tvShows}
+            actionHits={filteredAction}
+            scifiHits={scifiHits}
+            topRated={topRated}
+            upcoming={upcoming}
+            myListIds={myListIds}
+            onPlayMedia={handlePlayMedia}
+            onOpenDetail={handleOpenDetailModal}
+            onToggleMyList={handleToggleMyList}
+            onSelectPlan={(plan, service) => {
+              setCheckoutPlan(plan);
+              setCheckoutService(service);
+            }}
+            onOpenStore={() => handleSelectTab("ott_store")}
+          />
         )}
       </main>
 

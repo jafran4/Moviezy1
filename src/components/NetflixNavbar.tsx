@@ -127,22 +127,22 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
     <>
       <header
         id="netflix-navbar"
-        className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ease-in-out px-3.5 sm:px-8 md:px-12 lg:px-16 py-2.5 sm:py-3.5 flex items-center justify-between ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out px-3 sm:px-6 md:px-8 lg:px-12 py-2 flex items-center justify-between ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-xs border-b border-neutral-200"
-            : "bg-white/90 backdrop-blur-xs border-b border-neutral-200/60"
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200/80"
+            : "bg-white/90 backdrop-blur-sm border-b border-neutral-200/50"
         }`}
       >
         {/* Left section: Hamburger (mobile), Logo and Primary Navigation */}
-        <div className="flex items-center space-x-2 sm:space-x-6 lg:space-x-8">
+        <div className="flex items-center space-x-2 sm:space-x-4 lg:space-x-6 min-w-0">
           {/* Mobile Menu Hamburger Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden p-1.5 rounded-lg text-neutral-700 hover:text-black hover:bg-neutral-100 transition cursor-pointer"
+            className="md:hidden p-2 rounded-xl text-neutral-700 hover:text-black hover:bg-neutral-100 active:bg-neutral-200 transition cursor-pointer flex-shrink-0"
             aria-label="Open Navigation Menu"
           >
-            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Menu className="w-5 h-5" />
           </button>
 
           {/* Brand Logo */}
@@ -153,29 +153,29 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
               onClearSearch();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center space-x-2 focus:outline-none group text-left focus:ring-2 focus:ring-amber-500 rounded-lg p-0.5"
+            className="flex items-center space-x-2 focus:outline-none group text-left focus:ring-2 focus:ring-amber-500 rounded-xl p-1 transition-transform hover:scale-102 flex-shrink-0"
             aria-label="Tiger OTT Home"
           >
-            <TigerLogo size="sm" className="group-hover:scale-105 transition-transform duration-200" />
+            <TigerLogo size="sm" className="transition-transform duration-200" />
             {isTVMode && (
-              <span className="hidden sm:inline-block px-1.5 py-0.5 bg-amber-500 text-black font-black text-[9px] rounded uppercase">
+              <span className="hidden xl:inline-block px-1.5 py-0.5 bg-amber-500 text-black font-black text-[9px] rounded uppercase shadow-xs">
                 TV MODE
               </span>
             )}
           </button>
 
           {/* Primary Nav Links (Desktop) */}
-          <nav className="hidden md:flex items-center space-x-3 lg:space-x-5 text-xs lg:text-sm font-semibold">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm font-bold">
             <button
               data-tv-focusable="true"
               onClick={() => {
                 onSelectTab("home");
                 if (searchQuery) onClearSearch();
               }}
-              className={`transition duration-300 px-2 py-1 rounded focus:ring-2 focus:ring-amber-500 outline-none ${
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "home" && !searchQuery
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               Home
@@ -186,10 +186,10 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                 onSelectTab("tv");
                 if (searchQuery) onClearSearch();
               }}
-              className={`transition duration-300 px-2 py-1 rounded focus:ring-2 focus:ring-amber-500 outline-none ${
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "tv"
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               TV Series
@@ -200,10 +200,10 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                 onSelectTab("movies");
                 if (searchQuery) onClearSearch();
               }}
-              className={`transition duration-300 px-2 py-1 rounded focus:ring-2 focus:ring-amber-500 outline-none ${
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "movies"
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               Movies
@@ -214,8 +214,10 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
               <button
                 data-tv-focusable="true"
                 onClick={() => setGenresOpen(!genresOpen)}
-                className={`transition duration-300 px-2 py-1 rounded flex items-center space-x-1 focus:ring-2 focus:ring-amber-500 outline-none ${
-                  activeGenre ? "text-amber-600 font-bold" : "text-neutral-600 hover:text-black"
+                className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
+                  activeGenre
+                    ? "bg-amber-100 text-amber-900 font-extrabold"
+                    : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
                 }`}
               >
                 <Layers className="w-3.5 h-3.5" />
@@ -224,7 +226,7 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
               </button>
 
               {genresOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white border border-neutral-200 rounded-xl shadow-xl p-2 z-50 animate-fadeIn divide-y divide-neutral-100">
+                <div className="absolute left-0 mt-2 w-52 bg-white border border-neutral-200 rounded-2xl shadow-xl p-2 z-50 animate-fadeIn divide-y divide-neutral-100">
                   {GENRES_LIST.map((genre) => (
                     <button
                       key={genre}
@@ -233,9 +235,9 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                         if (onSelectGenre) onSelectGenre(genre === "All Genres" ? "" : genre);
                         setGenresOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-1.5 text-xs font-semibold rounded hover:bg-neutral-100 transition ${
+                      className={`w-full text-left px-3 py-1.5 text-xs font-semibold rounded-lg hover:bg-amber-50 transition cursor-pointer ${
                         activeGenre === genre || (!activeGenre && genre === "All Genres")
-                          ? "text-[#E50914] font-black"
+                          ? "text-amber-700 font-extrabold bg-amber-50/60"
                           : "text-neutral-700"
                       }`}
                     >
@@ -252,10 +254,10 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                 onSelectTab("new");
                 if (searchQuery) onClearSearch();
               }}
-              className={`transition duration-300 px-2 py-1 rounded focus:ring-2 focus:ring-amber-500 outline-none ${
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "new"
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               Trending
@@ -266,10 +268,10 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                 onSelectTab("mylist");
                 if (searchQuery) onClearSearch();
               }}
-              className={`relative transition duration-300 px-2 py-1 rounded flex items-center space-x-1 focus:ring-2 focus:ring-amber-500 outline-none ${
+              className={`relative transition-all duration-200 px-2.5 py-1.5 rounded-lg flex items-center space-x-1 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "mylist"
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               <span>My List</span>
@@ -293,14 +295,14 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                   }
                 }, 60);
               }}
-              className={`transition duration-300 px-2 py-1 rounded flex items-center space-x-1.5 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
+              className={`hidden lg:flex items-center space-x-1.5 transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
                 activeTab === "blog"
-                  ? "text-black font-black"
-                  : "text-neutral-600 hover:text-black"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
               }`}
             >
               <BookOpen className="w-3.5 h-3.5 text-amber-500" />
-              <span>IPTV Blog &amp; FAQ</span>
+              <span>IPTV Blog</span>
             </button>
 
             {/* OTT Store Pill */}
@@ -317,15 +319,15 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                   }
                 }, 60);
               }}
-              className={`relative transition duration-300 flex items-center space-x-1.5 px-3 py-1 rounded-full border cursor-pointer focus:ring-4 focus:ring-amber-500 outline-none ${
+              className={`relative transition-all duration-200 flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border cursor-pointer focus:ring-4 focus:ring-amber-500 outline-none shadow-xs hover:scale-102 ${
                 activeTab === "ott_store"
-                  ? "bg-[#E50914] border-[#E50914] text-white font-black shadow-md"
-                  : "bg-amber-50 border-amber-300 text-amber-900 hover:bg-amber-100"
+                  ? "bg-amber-500 border-amber-600 text-neutral-950 font-black shadow-md"
+                  : "bg-amber-50/80 border-amber-300 text-amber-950 hover:bg-amber-100"
               }`}
             >
-              <Crown className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+              <Crown className="w-3.5 h-3.5 fill-amber-600 text-amber-600" />
               <span className="font-extrabold tracking-tight">IPTV &amp; OTT</span>
-              <span className="bg-amber-400 text-black text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase tracking-tighter">
+              <span className="bg-amber-500 text-neutral-950 text-[9px] font-black px-1.5 py-0.2 rounded-md uppercase tracking-tight">
                 85% OFF
               </span>
             </button>
@@ -335,7 +337,7 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
               href={OFFICIAL_FACEBOOK_PAGE}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#1877F2] hover:bg-[#166fe5] text-white text-xs font-bold transition shadow-xs cursor-pointer"
+              className="hidden xl:flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#1877F2] hover:bg-[#166fe5] text-white text-xs font-bold transition shadow-xs cursor-pointer"
             >
               <Facebook className="w-3.5 h-3.5 fill-white text-[#1877F2]" />
               <span>Buy on Facebook</span>
@@ -343,8 +345,8 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
           </nav>
         </div>
 
-        {/* Right Section: Quick Store Trigger, Search, Notifications */}
-        <div className="flex items-center space-x-1.5 sm:space-x-3">
+        {/* Right Section: Quick Store Trigger, Search, Notifications, User */}
+        <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
 
           {/* Mobile Quick Store Trigger */}
           <button

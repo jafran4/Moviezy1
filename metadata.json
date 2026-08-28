@@ -1,6 +1,6 @@
 {
   "name": "Tiger OTT",
-  "description": "Tiger OTT - The world's cheapest IPTV service provider. Stream 20,000+ live channels, sports, and 60,000+ VOD 4K movies with anti-freeze CDN streaming, top 10 rankings, and instant activation.",
+  "description": "Tiger OTT - Stream Netflix 4K, Amazon Prime Video, 25,000+ Live TV Channels, UEFA Champions League, Premier League, and Spanish LaLiga with anti-freeze 4K CDN streaming and instant activation.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
