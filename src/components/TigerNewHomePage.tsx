@@ -279,132 +279,13 @@ export const TigerNewHomePage: React.FC<TigerNewHomePageProps> = ({
   const heroMatch = LIVE_MATCHES[0];
 
   return (
-    <div className="w-full bg-white text-neutral-900 min-h-screen pb-20 selection:bg-amber-500 selection:text-black">
+    <div className="w-full bg-white text-neutral-900 min-h-screen pb-20 selection:bg-amber-500 selection:text-black pt-16 sm:pt-20">
       {/* ========================================================= */}
-      {/* 1. TOP BRAND & LEAGUE LOGOS CAROUSEL / HUB BAR           */}
+      {/* 1. TIGER OTT SUBSCRIPTION & PRICING PLANS (FEATURED TOP) */}
       {/* ========================================================= */}
-      <section className="pt-20 sm:pt-24 px-3 sm:px-6 md:px-10 lg:px-14 max-w-7xl mx-auto">
-        <div className="bg-[#f8fafc] border border-neutral-200 rounded-3xl p-3 sm:p-5 shadow-xs">
-          <div className="flex items-center justify-between mb-3 px-2">
-            <div className="flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
-              <h2 className="text-xs sm:text-sm font-black tracking-wider uppercase text-neutral-800">
-                Official Streaming Hubs &amp; Live Leagues
-              </h2>
-            </div>
-            <span className="text-[11px] font-bold text-amber-700">
-              25,000+ 4K Channels &amp; 100K+ VOD Included
-            </span>
-          </div>
-
-          {/* Grid of the 6 core requested brand/league cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
-            {/* 1. NETFLIX */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "netflix" ? "all" : "netflix")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "netflix"
-                  ? "bg-red-50 border-red-500 ring-2 ring-red-500/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-red-500/50 hover:bg-red-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <NetflixBrandLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">Netflix 4K UHD</span>
-              <span className="text-[9px] text-red-600 font-semibold">Movies &amp; Series</span>
-            </button>
-
-            {/* 2. AMAZON PRIME VIDEO */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "prime" ? "all" : "prime")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "prime"
-                  ? "bg-sky-50 border-[#00A8E1] ring-2 ring-[#00A8E1]/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-[#00A8E1]/50 hover:bg-sky-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <PrimeVideoBrandLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">Prime Video</span>
-              <span className="text-[9px] text-[#0082b3] font-semibold">Originals &amp; TNF</span>
-            </button>
-
-            {/* 3. LIVE TV */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "livetv" ? "all" : "livetv")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "livetv"
-                  ? "bg-rose-50 border-rose-500 ring-2 ring-rose-500/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-rose-500/50 hover:bg-rose-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <LiveTVBrandLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">25,000+ Live TV</span>
-              <span className="text-[9px] text-rose-600 font-semibold">Zero Buffering</span>
-            </button>
-
-            {/* 4. UEFA CHAMPIONS LEAGUE (UCL) */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "ucl" ? "all" : "ucl")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "ucl"
-                  ? "bg-blue-50 border-blue-600 ring-2 ring-blue-600/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-blue-500/50 hover:bg-blue-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <UCLLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">UEFA Champions</span>
-              <span className="text-[9px] text-blue-600 font-semibold">Live Matches 4K</span>
-            </button>
-
-            {/* 5. PREMIER LEAGUE (EPL) */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "epl" ? "all" : "epl")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "epl"
-                  ? "bg-purple-50 border-purple-600 ring-2 ring-purple-600/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-purple-500/50 hover:bg-purple-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <PremierLeagueLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">Premier League</span>
-              <span className="text-[9px] text-purple-700 font-semibold">Every EPL Match</span>
-            </button>
-
-            {/* 6. SPANISH LEAGUE (LALIGA) */}
-            <button
-              type="button"
-              onClick={() => setSelectedHub(selectedHub === "laliga" ? "all" : "laliga")}
-              className={`flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-center group ${
-                selectedHub === "laliga"
-                  ? "bg-red-50 border-red-500 ring-2 ring-red-500/30 shadow-md"
-                  : "bg-white border-neutral-200 hover:border-red-500/50 hover:bg-red-50/40 shadow-2xs"
-              }`}
-            >
-              <div className="h-8 flex items-center justify-center mb-1.5 transition-transform group-hover:scale-110">
-                <LaLigaLogo size="md" />
-              </div>
-              <span className="text-[11px] font-extrabold text-neutral-900">Spanish LaLiga</span>
-              <span className="text-[9px] text-red-600 font-semibold">El Clásico Live</span>
-            </button>
-          </div>
-        </div>
+      <section className="mt-2">
+        <TigerSubscriptionSection onSelectPlan={onSelectPlan} />
       </section>
-
-
 
       {/* ========================================================= */}
       {/* 3. LIVE SPORTS CENTER (UCL, PREMIER LEAGUE, LALIGA)        */}
@@ -697,13 +578,6 @@ export const TigerNewHomePage: React.FC<TigerNewHomePageProps> = ({
             </div>
           ))}
         </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* 8. TIGER OTT SUBSCRIPTION & PRICING PLANS                */}
-      {/* ========================================================= */}
-      <section className="mt-16">
-        <TigerSubscriptionSection onSelectPlan={onSelectPlan} />
       </section>
     </div>
   );
