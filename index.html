@@ -27,9 +27,21 @@
     <meta name="distribution" content="Global" />
     <meta name="theme-color" content="#0a0a0a" />
 
-    <!-- Favicon & Brand Icon -->
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <!-- Favicon & Google Search Brand Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <meta name="msapplication-TileImage" content="/logo.png" />
+
+    <!-- Schema.org Microdata for Search Engines -->
+    <meta itemprop="name" content="Tiger OTT" />
+    <meta itemprop="description" content="Tiger OTT - #1 Best IPTV Service Provider with 20,000+ Live Channels and 60,000+ VOD in 4K UHD." />
+    <meta itemprop="image" content="https://tiger-ott.com/logo.png" />
+    <meta itemprop="logo" content="https://tiger-ott.com/logo.png" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://tiger-ott.com/" />
@@ -51,21 +63,21 @@
       property="og:description"
       content="Stream 20,000+ live premium TV channels, live sports, and 60,000+ movies &amp; series in 4K UHD. Anti-freeze servers, 99.9% uptime, and instant delivery from $1.65/mo."
     />
-    <meta property="og:image" content="https://tiger-ott.com/tiger-og-banner.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tiger OTT - #1 Best &amp; Cheapest IPTV Service Provider" />
+    <meta property="og:image" content="https://tiger-ott.com/logo.png" />
+    <meta property="og:image:secure_url" content="https://tiger-ott.com/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Tiger OTT Logo" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://tiger-ott.com/" />
     <meta name="twitter:title" content="Tiger OTT – Best &amp; Cheapest IPTV Service Provider" />
     <meta
       name="twitter:description"
       content="The world's cheapest IPTV service provider with 20,000+ channels and 4K VOD streaming. Instant delivery and 99.9% uptime."
     />
-    <meta name="twitter:image" content="https://tiger-ott.com/tiger-og-banner.jpg" />
-    <meta name="twitter:image:alt" content="Tiger OTT Streaming Dashboard" />
+    <meta name="twitter:image" content="https://tiger-ott.com/logo.png" />
+    <meta name="twitter:image:alt" content="Tiger OTT Logo" />
 
     <!-- Geo Meta Tags for Global Reach -->
     <meta name="geo.region" content="US" />
@@ -81,8 +93,16 @@
           "@type": "Organization",
           "@id": "https://tiger-ott.com/#organization",
           "name": "Tiger OTT",
+          "alternateName": ["TigerOTT", "Tiger IPTV"],
           "url": "https://tiger-ott.com",
-          "logo": "https://tiger-ott.com/tiger-logo.png",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://tiger-ott.com/#logo",
+            "url": "https://tiger-ott.com/logo.png",
+            "contentUrl": "https://tiger-ott.com/logo.png",
+            "caption": "Tiger OTT Logo"
+          },
+          "image": "https://tiger-ott.com/logo.png",
           "sameAs": [
             "https://www.facebook.com/profile.php?id=61565847062555"
           ],
@@ -99,6 +119,7 @@
           "@id": "https://tiger-ott.com/#website",
           "url": "https://tiger-ott.com",
           "name": "Tiger OTT",
+          "image": "https://tiger-ott.com/logo.png",
           "publisher": {
             "@id": "https://tiger-ott.com/#organization"
           },
@@ -112,11 +133,12 @@
           "@type": "Product",
           "@id": "https://tiger-ott.com/#product",
           "name": "Tiger OTT Premium 4K IPTV Subscription",
-          "image": "https://tiger-ott.com/tiger-og-banner.jpg",
+          "image": "https://tiger-ott.com/logo.png",
           "description": "Tiger OTT 4K Ultra HD IPTV Subscription with 20,000+ live channels, 60,000+ VOD movies, live sports, anti-freeze CDN, and instant activation.",
           "brand": {
             "@type": "Brand",
-            "name": "Tiger OTT"
+            "name": "Tiger OTT",
+            "logo": "https://tiger-ott.com/logo.png"
           },
           "aggregateRating": {
             "@type": "AggregateRating",

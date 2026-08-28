@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /logo.png
+Allow: /favicon.ico
+Allow: /tiger-logo.png
+
+Sitemap: https://tiger-ott.com/sitemap.xml
