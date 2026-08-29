@@ -4,6 +4,9 @@ import {
   Zap,
   ShieldCheck,
   Tv,
+  Trophy,
+  Film,
+  Sparkles,
   Smartphone,
   Laptop,
   Check,
@@ -299,6 +302,58 @@ const TigerSubscriptionSection: React.FC<TigerSubscriptionSectionProps> = ({
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-12">
             <div className="mb-3">
               <TigerLogo size="lg" glow={false} />
+            </div>
+
+            {/* Included Content Badges Strip: 20000+ Live TV, All Sports, 80000+ Movies & Series, Netflix, Amazon Prime */}
+            <div
+              id="tiger-content-included-highlights"
+              className="mt-1 mb-4 w-full max-w-2xl flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-2"
+            >
+              {/* 20,000+ Live TV */}
+              <div
+                id="badge-live-tv"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-xl text-xs font-extrabold text-neutral-900 shadow-2xs hover:border-blue-300 transition-colors"
+              >
+                <Tv className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span>20,000+ Live TV</span>
+              </div>
+
+              {/* All Sports */}
+              <div
+                id="badge-all-sports"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-xl text-xs font-extrabold text-neutral-900 shadow-2xs hover:border-amber-400 transition-colors"
+              >
+                <Trophy className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                <span>All Sports</span>
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse ml-0.5" />
+              </div>
+
+              {/* 80,000+ Movies & Series */}
+              <div
+                id="badge-movies-series"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-xl text-xs font-extrabold text-neutral-900 shadow-2xs hover:border-purple-300 transition-colors"
+              >
+                <Film className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                <span>80,000+ Movies &amp; Series</span>
+              </div>
+
+              {/* Netflix */}
+              <div
+                id="badge-netflix"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black border border-neutral-800 rounded-xl text-xs font-black text-white shadow-2xs hover:scale-102 transition-transform"
+              >
+                <span className="text-[#E50914] font-black tracking-wider text-xs">NETFLIX</span>
+                <span className="text-[10px] text-neutral-300 font-bold bg-neutral-800 px-1.5 py-0.2 rounded">4K VOD</span>
+              </div>
+
+              {/* Amazon Prime */}
+              <div
+                id="badge-amazon-prime"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#00A8E1]/10 border border-[#00A8E1]/40 rounded-xl text-xs font-black text-neutral-900 shadow-2xs hover:scale-102 transition-transform"
+              >
+                <span className="text-[#00A8E1] font-black tracking-tight">prime</span>
+                <span className="text-neutral-950 font-black">video</span>
+              </div>
             </div>
 
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider mb-3">
