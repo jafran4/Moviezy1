@@ -23,7 +23,13 @@ import {
   BookOpen,
   User,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  Trophy,
+  Radio,
+  Download,
+  Globe2,
+  HelpCircle,
+  Users
 } from "lucide-react";
 import { ActiveNavTab, UserProfile, NotificationItem, MediaItem, AuthUser } from "../types";
 import { PROFILES, NOTIFICATIONS } from "../data/fallbackData";
@@ -85,6 +91,7 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
   const [notifOpen, setNotifOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [genresOpen, setGenresOpen] = useState(false);
+  const [pagesMenuOpen, setPagesMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -165,7 +172,7 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
           </button>
 
           {/* Primary Nav Links (Desktop) */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm font-bold">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-1.5 text-xs lg:text-sm font-bold">
             <button
               data-tv-focusable="true"
               onClick={() => {
@@ -208,46 +215,35 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
             >
               Movies
             </button>
-
-            {/* Genres Dropdown */}
-            <div className="relative">
-              <button
-                data-tv-focusable="true"
-                onClick={() => setGenresOpen(!genresOpen)}
-                className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
-                  activeGenre
-                    ? "bg-amber-100 text-amber-900 font-extrabold"
-                    : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>{activeGenre || "Genres"}</span>
-                <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {genresOpen && (
-                <div className="absolute left-0 mt-2 w-52 bg-white border border-neutral-200 rounded-2xl shadow-xl p-2 z-50 animate-fadeIn divide-y divide-neutral-100">
-                  {GENRES_LIST.map((genre) => (
-                    <button
-                      key={genre}
-                      data-tv-focusable="true"
-                      onClick={() => {
-                        if (onSelectGenre) onSelectGenre(genre === "All Genres" ? "" : genre);
-                        setGenresOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-1.5 text-xs font-semibold rounded-lg hover:bg-amber-50 transition cursor-pointer ${
-                        activeGenre === genre || (!activeGenre && genre === "All Genres")
-                          ? "text-amber-700 font-extrabold bg-amber-50/60"
-                          : "text-neutral-700"
-                      }`}
-                    >
-                      {genre}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
+            <button
+              data-tv-focusable="true"
+              onClick={() => {
+                onSelectTab("sports");
+                if (searchQuery) onClearSearch();
+              }}
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer flex items-center space-x-1 ${
+                activeTab === "sports"
+                  ? "bg-red-600 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
+              }`}
+            >
+              <Trophy className="w-3.5 h-3.5 text-amber-500" />
+              <span>Live Sports</span>
+            </button>
+            <button
+              data-tv-focusable="true"
+              onClick={() => {
+                onSelectTab("channels");
+                if (searchQuery) onClearSearch();
+              }}
+              className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
+                activeTab === "channels"
+                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
+                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
+              }`}
+            >
+              25k Channels
+            </button>
             <button
               data-tv-focusable="true"
               onClick={() => {
@@ -262,48 +258,127 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
             >
               Trending
             </button>
-            <button
-              data-tv-focusable="true"
-              onClick={() => {
-                onSelectTab("mylist");
-                if (searchQuery) onClearSearch();
-              }}
-              className={`relative transition-all duration-200 px-2.5 py-1.5 rounded-lg flex items-center space-x-1 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
-                activeTab === "mylist"
-                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
-                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
-              }`}
-            >
-              <span>My List</span>
-              {myListCount > 0 && (
-                <span className="ml-1 px-1.5 py-0.2 bg-[#E50914] text-white text-[10px] font-bold rounded-full">
-                  {myListCount}
-                </span>
-              )}
-            </button>
 
-            {/* Blog & Guides Link */}
-            <button
-              data-tv-focusable="true"
-              onClick={() => {
-                onSelectTab("blog");
-                if (searchQuery) onClearSearch();
-                setTimeout(() => {
-                  const el = document.getElementById("tiger-iptv-blog");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }, 60);
-              }}
-              className={`hidden lg:flex items-center space-x-1.5 transition-all duration-200 px-2.5 py-1.5 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
-                activeTab === "blog"
-                  ? "bg-neutral-900 text-white font-extrabold shadow-xs"
-                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5 text-amber-500" />
-              <span>IPTV Blog</span>
-            </button>
+            {/* More Pages Dropdown */}
+            <div className="relative">
+              <button
+                data-tv-focusable="true"
+                onClick={() => setPagesMenuOpen(!pagesMenuOpen)}
+                className={`transition-all duration-200 px-2.5 py-1.5 rounded-lg flex items-center space-x-1 focus:ring-2 focus:ring-amber-500 outline-none cursor-pointer ${
+                  ["devices", "reseller", "languages", "faq", "blog", "mylist"].includes(activeTab)
+                    ? "bg-amber-100 text-amber-900 font-extrabold"
+                    : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
+                }`}
+              >
+                <span>More Pages</span>
+                <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+
+              {pagesMenuOpen && (
+                <div className="absolute left-0 mt-2 w-60 bg-white border border-neutral-200 rounded-2xl shadow-xl p-2 z-50 animate-fadeIn space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("devices");
+                      setPagesMenuOpen(false);
+                    }}
+                    className="w-full flex items-center space-x-2.5 px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer"
+                  >
+                    <Download className="w-4 h-4 text-amber-600" />
+                    <div>
+                      <div>Device Setup Guides</div>
+                      <div className="text-[10px] text-neutral-500 font-normal">Firestick, Samsung, LG, Android</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("reseller");
+                      setPagesMenuOpen(false);
+                    }}
+                    className="w-full flex items-center space-x-2.5 px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer"
+                  >
+                    <Users className="w-4 h-4 text-purple-600" />
+                    <div>
+                      <div className="flex items-center space-x-1">
+                        <span>Reseller Panel</span>
+                        <span className="px-1.5 py-0.2 bg-amber-200 text-amber-900 text-[9px] rounded font-black">PROFIT</span>
+                      </div>
+                      <div className="text-[10px] text-neutral-500 font-normal">Wholesale IPTV credits from $0.75</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("languages");
+                      setPagesMenuOpen(false);
+                    }}
+                    className="w-full flex items-center space-x-2.5 px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer"
+                  >
+                    <Globe2 className="w-4 h-4 text-blue-600" />
+                    <div>
+                      <div>Languages &amp; Countries</div>
+                      <div className="text-[10px] text-neutral-500 font-normal">50+ Worldwide bouquets</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("faq");
+                      setPagesMenuOpen(false);
+                    }}
+                    className="w-full flex items-center space-x-2.5 px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer"
+                  >
+                    <HelpCircle className="w-4 h-4 text-emerald-600" />
+                    <div>
+                      <div>FAQ &amp; Knowledge Base</div>
+                      <div className="text-[10px] text-neutral-500 font-normal">Instant troubleshooting answers</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("blog");
+                      setPagesMenuOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById("tiger-iptv-blog");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }, 60);
+                    }}
+                    className="w-full flex items-center space-x-2.5 px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer"
+                  >
+                    <BookOpen className="w-4 h-4 text-amber-600" />
+                    <div>
+                      <div>IPTV Blog &amp; Articles</div>
+                      <div className="text-[10px] text-neutral-500 font-normal">Latest streaming news &amp; tips</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectTab("mylist");
+                      setPagesMenuOpen(false);
+                    }}
+                    className="w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl hover:bg-amber-50 text-neutral-800 transition text-left cursor-pointer border-t border-neutral-100"
+                  >
+                    <div className="flex items-center space-x-2.5">
+                      <Bookmark className="w-4 h-4 text-red-600" />
+                      <span>My Watchlist</span>
+                    </div>
+                    {myListCount > 0 && (
+                      <span className="px-1.5 py-0.2 bg-[#E50914] text-white text-[10px] font-bold rounded-full">
+                        {myListCount}
+                      </span>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* OTT Store Pill */}
             <button
@@ -684,6 +759,32 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
 
                 <button
                   type="button"
+                  onClick={() => handleMobileNavClick("sports")}
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "sports"
+                      ? "bg-red-50 text-red-900 font-black"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <Trophy className="w-4 h-4 text-amber-500" />
+                  <span>Live Sports (UCL / EPL)</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("channels")}
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "channels"
+                      ? "bg-amber-50 text-amber-900"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <Radio className="w-4 h-4 text-blue-600" />
+                  <span>25,000+ Live Channels</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={() => handleMobileNavClick("new")}
                   className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
                     activeTab === "new"
@@ -691,8 +792,65 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({
                       : "text-neutral-700 hover:bg-neutral-100"
                   }`}
                 >
-                  <Flame className="w-4 h-4" />
-                  <span>Trending</span>
+                  <Flame className="w-4 h-4 text-red-500" />
+                  <span>Trending &amp; Top 10</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("devices")}
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "devices"
+                      ? "bg-amber-50 text-amber-900"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <Download className="w-4 h-4 text-amber-600" />
+                  <span>Device Setup Guides</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("reseller")}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "reseller"
+                      ? "bg-amber-50 text-amber-900"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Users className="w-4 h-4 text-purple-600" />
+                    <span>Reseller Panel</span>
+                  </div>
+                  <span className="text-[10px] font-black bg-amber-200 text-amber-900 px-1.5 py-0.2 rounded">
+                    Wholesale
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("languages")}
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "languages"
+                      ? "bg-amber-50 text-amber-900"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <Globe2 className="w-4 h-4 text-blue-600" />
+                  <span>Languages &amp; Countries</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavClick("faq")}
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition text-left ${
+                    activeTab === "faq"
+                      ? "bg-amber-50 text-amber-900"
+                      : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  <HelpCircle className="w-4 h-4 text-emerald-600" />
+                  <span>FAQ &amp; Support</span>
                 </button>
 
                 <button

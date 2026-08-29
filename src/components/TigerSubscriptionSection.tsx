@@ -290,7 +290,7 @@ const TigerSubscriptionSection: React.FC<TigerSubscriptionSectionProps> = ({
   return (
     <section
       id="tiger-ott-subscription"
-      className="w-full my-6 sm:my-10"
+      className="w-full m-0 p-0"
       aria-label="Subscription Plans"
     >
       <div className="w-full bg-[#f8fafc] border-t border-b border-neutral-200 py-10 sm:py-14 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-16 shadow-xs">

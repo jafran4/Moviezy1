@@ -92,12 +92,16 @@ export type ActiveNavTab =
   | 'home'
   | 'tv'
   | 'movies'
+  | 'sports'
+  | 'channels'
   | 'new'
-  | 'mylist'
-  | 'ott_store'
+  | 'devices'
   | 'reseller'
   | 'languages'
-  | 'blog';
+  | 'blog'
+  | 'faq'
+  | 'mylist'
+  | 'ott_store';
 
 export interface OTTPlan {
   id: string;

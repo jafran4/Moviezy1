@@ -16,6 +16,15 @@ import { UserLoginModal } from "./components/UserLoginModal";
 import OTTCheckoutModal from "./components/OTTCheckoutModal";
 import { TigerLogo } from "./components/TigerLogo";
 import { TigerNewHomePage } from "./components/TigerNewHomePage";
+import { TVSeriesPage } from "./components/pages/TVSeriesPage";
+import { MoviesPage } from "./components/pages/MoviesPage";
+import { LiveSportsPage } from "./components/pages/LiveSportsPage";
+import { LiveChannelsPage } from "./components/pages/LiveChannelsPage";
+import { NewReleasesPage } from "./components/pages/NewReleasesPage";
+import { DeviceSetupPage } from "./components/pages/DeviceSetupPage";
+import { ResellerPage } from "./components/pages/ResellerPage";
+import { LanguagesPage } from "./components/pages/LanguagesPage";
+import { FAQPage } from "./components/pages/FAQPage";
 import { MediaItem, ActiveNavTab, UserProfile, OTTPlan, OTTService, AuthUser } from "./types";
 import {
   fetchCategoryMedia,
@@ -485,6 +494,94 @@ const App: React.FC = () => {
               </div>
             ) : null}
           </section>
+        ) : activeTab === "tv" ? (
+          /* Dedicated TV Series Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <TVSeriesPage
+              tvShows={tvShows}
+              trending={trending}
+              topRated={topRated}
+              myListIds={myListIds}
+              onPlayMedia={handlePlayMedia}
+              onOpenDetail={handleOpenDetailModal}
+              onToggleMyList={handleToggleMyList}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "movies" ? (
+          /* Dedicated 4K Movies & Cinema Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <MoviesPage
+              trending={trending}
+              popular={popular}
+              actionHits={filteredAction}
+              scifiHits={scifiHits}
+              topRated={topRated}
+              myListIds={myListIds}
+              onPlayMedia={handlePlayMedia}
+              onOpenDetail={handleOpenDetailModal}
+              onToggleMyList={handleToggleMyList}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "sports" ? (
+          /* Dedicated 4K Live Sports & PPV Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <LiveSportsPage
+              onPlayMedia={handlePlayMedia}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "channels" ? (
+          /* Dedicated 25,000+ Worldwide Live TV Channels Directory */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <LiveChannelsPage
+              onPlayMedia={handlePlayMedia}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "new" ? (
+          /* Dedicated New Releases & Trending Leaderboard Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <NewReleasesPage
+              top10={top10}
+              trending={trending}
+              upcoming={upcoming}
+              myListIds={myListIds}
+              onPlayMedia={handlePlayMedia}
+              onOpenDetail={handleOpenDetailModal}
+              onToggleMyList={handleToggleMyList}
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "devices" ? (
+          /* Dedicated Device Installation & App Setup Guides */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <DeviceSetupPage
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "reseller" ? (
+          /* Dedicated Reseller Panel & Wholesale Earnings Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <ResellerPage
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "languages" ? (
+          /* Dedicated Global Languages & Regional Bouquets Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <LanguagesPage
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
+        ) : activeTab === "faq" ? (
+          /* Dedicated FAQ & Customer Support Center Page */
+          <section className="animate-fadeIn min-h-[85vh]">
+            <FAQPage
+              onOpenStore={() => handleSelectTab("ott_store")}
+            />
+          </section>
         ) : activeTab === "mylist" ? (
           /* My List Tab View */
           <section className="pt-24 px-4 sm:px-8 md:px-12 lg:px-16 max-w-7xl mx-auto animate-fadeIn min-h-[75vh]">
@@ -753,31 +850,125 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* 4-column link grid */}
+          {/* 4-column link grid with active page routing */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-neutral-500">
             <div className="space-y-2">
-              <a href="#tiger-iptv-blog" className="block hover:text-neutral-900 hover:underline">IPTV Blog &amp; Insights</a>
-              <a href="#investors" className="block hover:text-neutral-900 hover:underline">Investor Relations</a>
-              <a href="#privacy" className="block hover:text-neutral-900 hover:underline">Privacy Policy</a>
-              <a href="https://www.facebook.com/profile.php?id=61565847062555" target="_blank" rel="noopener noreferrer" className="block text-[#1877F2] font-semibold hover:underline">Contact Us on Facebook (24/7)</a>
+              <button
+                onClick={() => {
+                  setActiveTab("tv");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                TV Series (15,000+ Shows)
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("movies");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                4K Movies &amp; VOD
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("sports");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                Live Sports &amp; PPV (60FPS)
+              </button>
+              <a
+                href="https://www.facebook.com/profile.php?id=61565847062555"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-[#1877F2] font-bold hover:underline"
+              >
+                Contact Us on Facebook (24/7)
+              </a>
             </div>
             <div className="space-y-2">
-              <a href="#faq-best-iptv-service" className="block hover:text-neutral-900 hover:underline">Best IPTV Service FAQ</a>
-              <a href="#jobs" className="block hover:text-neutral-900 hover:underline">Resellers &amp; Panel Credits</a>
-              <a href="#legal" className="block hover:text-neutral-900 hover:underline">Legal Notices</a>
-              <a href="#dna" className="block hover:text-neutral-900 hover:underline">Do Not Sell My Info</a>
+              <button
+                onClick={() => {
+                  setActiveTab("channels");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                25,000+ Live Channels
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("devices");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                Device Setup &amp; Smarters App
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("reseller");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-purple-600 font-bold hover:underline text-left cursor-pointer"
+              >
+                Reseller Panel (Wholesale)
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("languages");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                50+ Worldwide Languages
+              </button>
             </div>
             <div className="space-y-2">
-              <a href="#gift" className="block hover:text-neutral-900 hover:underline">Gift Cards</a>
-              <a href="#tiger-ott-subscription" className="block hover:text-neutral-900 hover:underline">Cheap IPTV Subscription</a>
-              <a href="#cookie" className="block hover:text-neutral-900 hover:underline">Cookie Preferences</a>
-              <a href="#adchoices" className="block hover:text-neutral-900 hover:underline">Ad Choices</a>
+              <button
+                onClick={() => {
+                  setActiveTab("faq");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                FAQ &amp; Knowledge Base
+              </button>
+              <button
+                onClick={() => {
+                  handleSelectTab("ott_store");
+                }}
+                className="block hover:text-amber-600 font-bold hover:underline text-left cursor-pointer"
+              >
+                IPTV &amp; OTT Subscriptions ($1.65/mo)
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("blog");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                IPTV Guides &amp; Blog
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab("mylist");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="block hover:text-neutral-900 hover:underline text-left cursor-pointer"
+              >
+                My Watchlist
+              </button>
             </div>
             <div className="space-y-2">
-              <a href="#media" className="block hover:text-neutral-900 hover:underline">Media Center</a>
-              <a href="#terms" className="block hover:text-neutral-900 hover:underline">Terms of Service</a>
-              <a href="#corporate" className="block hover:text-neutral-900 hover:underline">Corporate Information</a>
-              <a href="#guarantee" className="block hover:text-neutral-900 hover:underline">100% Anti-Freeze Guarantee</a>
+              <span className="block text-neutral-400">99.9% Server Uptime</span>
+              <span className="block text-neutral-400">Anti-Freeze 9.3 Engine</span>
+              <span className="block text-neutral-400">Instant M3U / Xtream Delivery</span>
+              <span className="block text-emerald-600 font-semibold">100% Anti-Freeze Guarantee</span>
             </div>
           </div>
 

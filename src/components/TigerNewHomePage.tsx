@@ -23,11 +23,11 @@ export const TigerNewHomePage: React.FC<TigerNewHomePageProps> = ({
   onSelectPlan,
 }) => {
   return (
-    <div className="w-full bg-white text-neutral-900 min-h-screen pb-20 selection:bg-amber-500 selection:text-black pt-16 sm:pt-20">
+    <div className="w-full bg-white text-neutral-900 min-h-screen pb-20 selection:bg-amber-500 selection:text-black pt-14">
       {/* ========================================================= */}
       {/* TIGER OTT SUBSCRIPTION & PRICING PLANS (PRIMARY HOME)     */}
       {/* ========================================================= */}
-      <section className="mt-2">
+      <section className="m-0 p-0">
         <TigerSubscriptionSection onSelectPlan={onSelectPlan} />
       </section>
     </div>
