@@ -296,42 +296,8 @@ const TigerSubscriptionSection: React.FC<TigerSubscriptionSectionProps> = ({
       className="w-full m-0 p-0"
       aria-label="Subscription Plans"
     >
-      <div className="relative w-full overflow-hidden bg-[#f8fafc] border-t border-b border-neutral-200 py-10 sm:py-14 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-16 shadow-xs">
-        {/* Background YouTube Video Stack (Right Side with Left-Side Blur & Readability Filters) */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          {/* Right-Side YouTube Video Embed (rFEWoXANNFA) */}
-          <div className="absolute top-0 right-0 bottom-0 w-full sm:w-[80%] md:w-[65%] lg:w-[55%] xl:w-[50%] h-full z-1 overflow-hidden">
-            <div className="relative w-full h-full flex items-center justify-center">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/rFEWoXANNFA?autoplay=1&mute=1&loop=1&playlist=rFEWoXANNFA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&disablekb=1&origin=${typeof window !== 'undefined' ? window.location.origin : ''}`}
-                title="Tiger OTT Cinematic Stream Background"
-                className="absolute top-1/2 left-1/2 w-[300%] h-[300%] sm:w-[220%] sm:h-[220%] md:w-[170%] md:h-[170%] lg:w-[150%] lg:h-[150%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none opacity-60 mix-blend-multiply"
-                allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-              />
-            </div>
-
-            {/* Left-Side Blur Filter Layer: blurs transition boundary */}
-            <div
-              className="absolute inset-y-0 left-0 w-32 sm:w-48 md:w-64 lg:w-80 backdrop-blur-xl z-2 pointer-events-none"
-              style={{
-                maskImage: 'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)'
-              }}
-            />
-
-            {/* Horizontal Light Gradient Fade for seamless background blend */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/75 to-transparent w-full z-3" />
-
-            {/* Subtle Vertical Vignette to blend with top and bottom borders */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#f8fafc] via-transparent to-[#f8fafc]/80 z-3" />
-          </div>
-
-          {/* Master Text Readability Filter Overlays across entire section */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/95 to-[#f8fafc]/40 w-full sm:w-[85%] md:w-[65%] z-4" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.08),transparent_60%)] z-4" />
-        </div>
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto">
+      <div className="w-full bg-[#f8fafc] border-t border-b border-neutral-200 py-10 sm:py-14 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-16 shadow-xs">
+        <div className="w-full max-w-7xl mx-auto">
           {/* Header Block */}
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-12">
             <div className="mb-3">

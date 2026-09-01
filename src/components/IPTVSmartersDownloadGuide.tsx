@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Download,
   Laptop,
   Tv,
   Monitor,
   Apple,
-  Play,
   Facebook,
   ExternalLink,
   ShieldCheck,
   Zap,
-  Video,
-  Info,
-  ArrowRight
+  Info
 } from "lucide-react";
 import { OFFICIAL_FACEBOOK_PAGE } from "./TigerSubscriptionSection";
 
@@ -23,35 +20,6 @@ interface IPTVSmartersDownloadGuideProps {
 export const IPTVSmartersDownloadGuide: React.FC<IPTVSmartersDownloadGuideProps> = ({
   onOpenStore,
 }) => {
-  const [activeVideoModal, setActiveVideoModal] = useState<string | null>(null);
-
-  const videoTutorials = [
-    {
-      id: "video-tv-firestick",
-      title: "Complete Smart TV & Firestick IPTV Smarters Setup",
-      duration: "4:35",
-      embedUrl: "https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ",
-      thumbnail: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80",
-      description: "Step-by-step walkthrough demonstrating app search, installation, and login on TV.",
-    },
-    {
-      id: "video-samsung-lg",
-      title: "How to Install IPTV Smarters on Samsung & LG TVs",
-      duration: "3:40",
-      embedUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
-      thumbnail: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600&auto=format&fit=crop&q=80",
-      description: "How to navigate Samsung Apps or LG Content Store to find Smarters Pro.",
-    },
-    {
-      id: "video-laptop",
-      title: "Windows & Mac IPTV Smarters Pro Setup Guide",
-      duration: "2:55",
-      embedUrl: "https://www.youtube-nocookie.com/embed/kJQP7kiw5Fk",
-      thumbnail: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80",
-      description: "Direct download from Microsoft Store and Apple Mac App Store with verification tips.",
-    },
-  ];
-
   return (
     <section
       id="how-to-download-iptv-smarters-pro-on-tv"
@@ -267,78 +235,6 @@ export const IPTVSmartersDownloadGuide: React.FC<IPTVSmartersDownloadGuideProps>
           </div>
         </div>
 
-        {/* ===================== VIDEO TUTORIALS SECTION ===================== */}
-        <div className="mb-14 bg-neutral-900 border border-neutral-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-500/30 text-red-400 text-xs font-bold mb-3">
-              <Video className="w-3.5 h-3.5" />
-              <span>Video Setup Tutorials</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight mb-2">
-              Watch How to Safely Install &amp; Configure IPTV Smarters Pro
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-400">
-              Watch this detailed video tutorial explaining how to safely install and configure IPTV Smarters Pro on various smart TV models and streaming sticks:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {videoTutorials.map((vid) => (
-              <div
-                key={vid.id}
-                className="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden flex flex-col justify-between group hover:border-neutral-700 transition-all shadow-lg"
-              >
-                <div>
-                  <div className="relative h-44 w-full overflow-hidden bg-black">
-                    <img
-                      src={vid.thumbnail}
-                      alt={vid.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <button
-                        type="button"
-                        onClick={() => setActiveVideoModal(vid.embedUrl)}
-                        className="w-12 h-12 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all cursor-pointer"
-                        aria-label={`Watch tutorial: ${vid.title}`}
-                      >
-                        <Play className="w-5 h-5 fill-white ml-0.5" />
-                      </button>
-                    </div>
-                    <span className="absolute bottom-2.5 right-3 bg-black/80 px-2 py-0.5 rounded text-[11px] font-mono text-neutral-300">
-                      {vid.duration}
-                    </span>
-                  </div>
-
-                  <div className="p-4">
-                    <h4 className="font-bold text-white text-sm sm:text-base leading-snug mb-2 group-hover:text-amber-400 transition-colors">
-                      {vid.title}
-                    </h4>
-                    <p className="text-xs text-neutral-400 leading-relaxed">
-                      {vid.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 pt-0 border-t border-neutral-800/80 mt-auto pt-3 flex items-center justify-between">
-                  <span className="text-[11px] text-amber-400 font-semibold">
-                    Step-by-Step Guide
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setActiveVideoModal(vid.embedUrl)}
-                    className="text-xs font-bold text-neutral-300 hover:text-white inline-flex items-center space-x-1 cursor-pointer"
-                  >
-                    <span>Play Video</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-red-500" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* ===================== PROMINENT 1-ON-1 FACEBOOK CALLOUT ===================== */}
         <div className="bg-gradient-to-r from-blue-950/80 via-neutral-900 to-blue-950/80 border-2 border-blue-500/40 rounded-2xl p-6 sm:p-10 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10 max-w-3xl mx-auto space-y-4">
@@ -382,37 +278,6 @@ export const IPTVSmartersDownloadGuide: React.FC<IPTVSmartersDownloadGuideProps>
           </div>
         </div>
       </div>
-
-      {/* Video Modal Player */}
-      {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col">
-            <div className="p-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-950">
-              <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                <Video className="w-4 h-4 text-red-500" />
-                <span>IPTV Smarters Pro Video Guide</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveVideoModal(null)}
-                className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition text-xs font-bold cursor-pointer"
-              >
-                ✕ Close
-              </button>
-            </div>
-
-            <div className="relative pb-[56.25%] h-0 w-full bg-black">
-              <iframe
-                src={activeVideoModal}
-                title="IPTV Smarters Pro Installation Video Tutorial"
-                className="absolute top-0 left-0 w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

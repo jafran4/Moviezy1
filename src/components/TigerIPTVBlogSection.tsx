@@ -432,28 +432,9 @@ export const TigerIPTVBlogSection: React.FC<TigerIPTVBlogSectionProps> = ({
                 </div>
               ))}
 
-              {/* Special Video & Facebook Section for IPTV Smarters Post */}
+              {/* Special Facebook Section for IPTV Smarters Post */}
               {activePost.slug === "how-to-download-iptv-smarters-pro-on-tv" && (
                 <div className="space-y-6 pt-4 border-t border-neutral-800">
-                  <div className="space-y-3">
-                    <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                      <Tv className="w-4 h-4 text-red-500" />
-                      <span>Video Tutorial: Installing IPTV Smarters Pro on Smart TV &amp; Firestick</span>
-                    </h3>
-                    <p className="text-xs text-neutral-400">
-                      Watch this detailed video tutorial explaining how to safely install and configure IPTV Smarters Pro on various smart TV models and streaming sticks:
-                    </p>
-                    <div className="relative pb-[56.25%] h-0 w-full rounded-xl overflow-hidden border border-neutral-800 shadow-xl bg-black">
-                      <iframe
-                        src="https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
-                        title="How to download IPTV Smarters Pro on TV video tutorial"
-                        className="absolute top-0 left-0 w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  </div>
-
                   <div className="p-4 bg-gradient-to-r from-blue-900/40 to-neutral-950 border border-blue-500/40 rounded-xl space-y-2">
                     <div className="flex items-center space-x-2 text-blue-300 font-bold text-xs sm:text-sm">
                       <Facebook className="w-4 h-4 text-[#1877F2]" />

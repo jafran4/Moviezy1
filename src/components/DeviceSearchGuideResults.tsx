@@ -4,7 +4,6 @@ import {
   Tv,
   Laptop,
   CheckCircle2,
-  Play,
   Facebook,
   ExternalLink,
   Info,
@@ -30,7 +29,6 @@ export const DeviceSearchGuideResults: React.FC<DeviceSearchGuideResultsProps> =
   onOpenStore,
   onOpenBlogArticle,
 }) => {
-  const [activeVideoModal, setActiveVideoModal] = useState<string | null>(null);
   const [expandedGuideId, setExpandedGuideId] = useState<string | null>(null);
 
   // Match device guides
@@ -227,17 +225,6 @@ export const DeviceSearchGuideResults: React.FC<DeviceSearchGuideResultsProps> =
                   {/* Card Actions */}
                   <div className="p-4 bg-neutral-100 border-t border-neutral-200 flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center space-x-2">
-                      {guide.videoEmbedUrl && (
-                        <button
-                          type="button"
-                          onClick={() => setActiveVideoModal(guide.videoEmbedUrl || null)}
-                          className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold flex items-center space-x-1 transition shadow-xs cursor-pointer"
-                        >
-                          <Play className="w-3 h-3 fill-white" />
-                          <span>Video Tutorial</span>
-                        </button>
-                      )}
-
                       <button
                         type="button"
                         onClick={handleScrollToGuide}
@@ -303,37 +290,6 @@ export const DeviceSearchGuideResults: React.FC<DeviceSearchGuideResultsProps> =
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      )}
-
-      {/* Video Modal Player */}
-      {activeVideoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col">
-            <div className="p-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-950">
-              <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                <Play className="w-4 h-4 text-red-500 fill-red-500" />
-                <span>IPTV Smarters Pro Setup Tutorial</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveVideoModal(null)}
-                className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition text-xs font-bold cursor-pointer"
-              >
-                ✕ Close
-              </button>
-            </div>
-
-            <div className="relative pb-[56.25%] h-0 w-full bg-black">
-              <iframe
-                src={activeVideoModal}
-                title="IPTV Smarters Pro Installation Video Tutorial"
-                className="absolute top-0 left-0 w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
           </div>
         </div>
       )}

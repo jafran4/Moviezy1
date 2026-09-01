@@ -42,7 +42,7 @@ import {
   restoreFocus,
   focusElement,
 } from "./services/spatialNav";
-import { Facebook, Instagram, Twitter, Youtube, Tv, Sparkles, Filter } from "lucide-react";
+import { Facebook, Instagram, Twitter, Tv, Sparkles, Filter } from "lucide-react";
 
 const App: React.FC = () => {
   // Navigation & User State
@@ -764,9 +764,6 @@ const App: React.FC = () => {
               </a>
               <a href="#twitter" className="hover:text-amber-500 transition" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#youtube" className="hover:text-amber-500 transition" aria-label="YouTube">
-                <Youtube className="w-5 h-5" />
               </a>
             </div>
           </div>

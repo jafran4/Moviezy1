@@ -14,7 +14,6 @@ export interface DeviceGuideItem {
   stepByStep: string[];
   notes?: string;
   verifiedPublisher?: string;
-  videoEmbedUrl?: string;
 }
 
 export const DEVICE_GUIDES: DeviceGuideItem[] = [
@@ -53,8 +52,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Click 'Install' and wait for the download to finish.",
       "Open the app, select 'Login with Xtream Codes API', and enter your Tiger OTT credentials."
     ],
-    notes: "If IPTV Smarters is region-restricted in your LG Content Store, you can connect an Amazon Fire TV Stick or Google Chromecast to an HDMI port.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
+    notes: "If IPTV Smarters is region-restricted in your LG Content Store, you can connect an Amazon Fire TV Stick or Google Chromecast to an HDMI port."
   },
   {
     id: "guide-samsung-tv",
@@ -91,8 +89,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Select the app and click the 'Install' (or 'Download') button.",
       "Once installed, click 'Open', agree to terms, and log in with your Tiger OTT M3U/Xtream credentials."
     ],
-    notes: "For older Samsung models (prior to 2018) that lack native store availability, plug an Amazon Firestick into an HDMI port.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+    notes: "For older Samsung models (prior to 2018) that lack native store availability, plug an Amazon Firestick into an HDMI port."
   },
   {
     id: "guide-google-android-tv",
@@ -137,8 +134,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Click 'Install'.",
       "Open the application, choose 'Login with Xtream Codes API', and enter your Tiger OTT Server URL, Username, and Password."
     ],
-    notes: "Supports 4K UHD 60FPS streams, electronic program guide (EPG), and multi-screen view.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
+    notes: "Supports 4K UHD 60FPS streams, electronic program guide (EPG), and multi-screen view."
   },
   {
     id: "guide-firestick",
@@ -173,8 +169,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Open Downloader, enter the quick Smarters download code or URL, and click Go.",
       "Click 'Install' when prompted, then open IPTV Smarters Pro and log in with your Tiger OTT account."
     ],
-    notes: "Amazon Firestick 4K Max is the #1 recommended hardware for buttery smooth 60 FPS sports streaming.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
+    notes: "Amazon Firestick 4K Max is the #1 recommended hardware for buttery smooth 60 FPS sports streaming."
   },
   {
     id: "guide-windows-laptop",
@@ -217,8 +212,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Launch the app, accept the license terms, and enter your Tiger OTT Xtream Codes or M3U playlist link."
     ],
     verifiedPublisher: "SmartersPlayer LLC / AI Tools Apps SRL",
-    notes: "Supports external hardware acceleration (NVIDIA / AMD / Intel) for zero-lag 4K playback.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/kJQP7kiw5Fk"
+    notes: "Supports external hardware acceleration (NVIDIA / AMD / Intel) for zero-lag 4K playback."
   },
   {
     id: "guide-mac-apple",
@@ -255,8 +249,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Authorize with Touch ID or your Apple ID password.",
       "Open IPTV Smarters Pro from Launchpad or Applications and enter your Tiger OTT credentials."
     ],
-    notes: "Runs natively on Apple Silicon (M1, M2, M3, M4) with ultra-low battery consumption.",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/kJQP7kiw5Fk"
+    notes: "Runs natively on Apple Silicon (M1, M2, M3, M4) with ultra-low battery consumption."
   },
   {
     id: "guide-roku-legacy",
@@ -335,8 +328,7 @@ export const DEVICE_GUIDES: DeviceGuideItem[] = [
       "Enter: 1) Any name (e.g., Tiger OTT), 2) Username, 3) Password, 4) Server URL provided in your subscription.",
       "Click 'Add User' and start enjoying live TV, sports, movies, and TV series in 4K."
     ],
-    notes: "Need fast help? Message us on Facebook with your TV or laptop model for immediate 1-on-1 step-by-step setup!",
-    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/5kOQ6k5tWkQ"
+    notes: "Need fast help? Message us on Facebook with your TV or laptop model for immediate 1-on-1 step-by-step setup!"
   }
 ];
 
